@@ -14,7 +14,7 @@
 npm init -y
 ```
 
-- note: dapat icommit first sa Git ang para dili mag serparate ang frontend/react pag sa version control.
+- note: dapat icommit first sa Github ang para dili mag serparate ang frontend/react pag sa version control.
 
 ```
 git init
@@ -67,11 +67,11 @@ After installing the dependencies the package.json folder should look as follows
 
 <hr >
 
-##### Part 2: Creating Frontend
+#### Part 2: Creating Frontend
 
 ###### Create React app
 
-- for this project I'm going to used (tailwindcss)[https://tailwindcss.com/docs/guides/create-react-app]
+- for this project I'm going to used [tailwindcss](https://tailwindcss.com/docs/guides/create-react-app)
 
 ```
 npx create-react-app my-project

@@ -219,3 +219,74 @@ const connectDB = async () => {
 
 module.exports = connectDB;
 ```
+
+###### Define database schema
+
+<hr>
+
+```
+ROOT
+  |──backend
+  |    ├── config
+  |    │   └── db.js
+  |    ├── controllers
+  |    │   └── todo.js
+  |    ├── models
+  |    │   └── todo.js <--- we are here
+  |    ├── node_modules
+  |    ├── routes
+  |    │   └── todo.js
+  |    ├── .env
+  |    ├── server.js
+  |──frontend
+  |    |──node_modules
+  |    |──public
+  |    |──src
+  |    |   └── components
+  |──client-ui
+  |    |──node_modules
+  |    |──public
+  |    |──src
+  |    |   └── components
+  ├── package-lock.json
+  └── package.json
+```
+
+```js
+// models/todo.js
+const mongoose = require("mongoose");
+
+const TodoSchema = new mongoose.Schema({
+  title: {
+    type: "String",
+    required: true
+  },
+  description: {
+    type: "String"
+  }
+});
+
+const Todo = mongoose.model("todo", TodoSchema);
+
+module.exports = Todo;
+```
+
+<hr>
+
+- ###### DEFINING END POINTS
+
+```
+ROOT
+  |──backend
+  |    ├── config
+  |    │   └── db.js
+  |    ├── controllers
+  |    │   └── todo.js
+  |    ├── models
+  |    │   └── todo.js 
+  |    ├── node_modules
+  |    ├── routes
+  |    │   └── todo.js <--- we are here
+  |    ├── .env
+  |    ├── server.js
+```

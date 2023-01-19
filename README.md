@@ -14,6 +14,12 @@
 npm init -y
 ```
 
+- note: dapat icommit first sa Git ang para dili mag serparate ang frontend/react pag sa version control.
+
+```
+git init
+```
+
 ###### 2. Setting up package.json
 
 ```

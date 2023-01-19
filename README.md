@@ -2,11 +2,9 @@
 
 <hr>
 
-<hr>
-
 ##### Part 1: Creating Backend
 
-###### Initializing our Project
+###### 1. Initializing our Project
 
 <hr>
 
@@ -22,11 +20,11 @@ npm init -y
 npm i cors dotenv express mongoose concurrently
 ```
 
-cors: allows cross-origin api calls
-dotenv: needed to access data from .env files
-express: web application framework for node.js
-mongoose: It is needed to define the database schema and connecting to mongoDB
-concurrently: Run multiple commands concurrently in package.json
+- cors: allows cross-origin api calls
+- dotenv: needed to access data from .env files
+- express: web application framework for node.js
+- mongoose: It is needed to define the database schema and connecting to mongoDB
+- concurrently: Run multiple commands concurrently in package.json
 
 <hr>
 After installing the dependencies the package.json folder should look as follows.

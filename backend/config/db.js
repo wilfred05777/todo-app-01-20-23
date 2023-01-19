@@ -3,11 +3,14 @@ const mongoose = require("mongoose");
 
 const db = process.env.MONGO_URI;
 
+mongoose.set("strictQuery", false);
+
 const connectDB = async () => {
   try {
-    await mongoose.connect(db, {
+    const conn = await mongoose.connect(db, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useFindAndModify: false
     });
     console.log("MongoDB is connected");
   } catch (error) {

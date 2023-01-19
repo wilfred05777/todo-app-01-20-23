@@ -65,7 +65,7 @@ After installing the dependencies the package.json folder should look as follows
 
 ###### Create React app
 
-- for this project I'm going to used tailwindcss
+- for this project I'm going to used (tailwindcss)[https://tailwindcss.com/docs/guides/create-react-app]
 
 ```
 npx create-react-app my-project

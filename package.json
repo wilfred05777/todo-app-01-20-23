@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node backend/server",
+    "clientui": "concurrently \"npm run server\" \"npm run client-ui\" ",
     "dev": "concurrently \"npm run server\" \"npm run frontend\" ",
     "server": "nodemon backend/server",
     "frontend": "npm start --prefix frontend",
+    "client-ui":"npm start --prefix client-ui",
     "data:import": "node backend/seeder -d",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
 

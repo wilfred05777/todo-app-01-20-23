@@ -180,6 +180,8 @@ app.listen(PORT, () => {
 
 ###### Create React app
 
+- using [vite](https://tailwindcss.com/docs/guides/vite)
+
 - for this project I'm going to used [tailwindcss](https://tailwindcss.com/docs/guides/create-react-app)
 
 ```

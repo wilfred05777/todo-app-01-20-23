@@ -7,7 +7,7 @@ const db = process.env.MONGO_URI;
 
 const connectDB = async () => {
   try {
-    const conn = await `mongoose.connect(db, {
+    const conn = await `{mongoose.connect(db, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })`;

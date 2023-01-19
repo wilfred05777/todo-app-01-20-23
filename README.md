@@ -31,6 +31,7 @@ npm i cors dotenv express mongoose concurrently
 - express: web application framework for node.js
 - mongoose: It is needed to define the database schema and connecting to mongoDB
 - concurrently: Run multiple commands concurrently in package.json
+- mongodb: command installs MongoDB database driver that allows your Node.js applications to connect to the database and work with data.
 
 <hr>
 After installing the dependencies the package.json folder should look as follows.
@@ -192,6 +193,29 @@ npm install -D tailwindcss
 npx tailwindcss init
 ```
 
-```
+##### MongoDB configuration guide
 
+- [MongoDB guid](https://www.mongodb.com/languages/mern-stack-tutorial)
+
+```js
+// config/db.js
+const mongoose = require("mongoose");
+
+const db = process.env.MONGO_URI;
+
+const connectDB = async () => {
+  try {
+    // `mongoose.connect()` dapat naay qoutes or backticks
+    const conn = await `mongoose.connect(db, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })`;
+    console.log("MongoDB is connected");
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
 ```

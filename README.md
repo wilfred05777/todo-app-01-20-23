@@ -502,7 +502,7 @@ The final part of completing the backend is to add the endpoints to the server.j
 /// server.js
 require("dotenv").config();
 const express = require("express");
-const connectDB = require("./config/db");
+// const connectDB = require("./config/db");
 const cors = require("cors");
 
 const app = express();

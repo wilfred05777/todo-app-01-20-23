@@ -295,7 +295,7 @@ ROOT
 /// routes/todo.js
 const express = require("express");
 // @ts-ignore
-const router = router.Router();
+const router = express.Router();
 
 /**
  * @route GET api/todo
@@ -327,4 +327,206 @@ router.put("/:id");
 router.delete("/:id");
 
 module.exports = router;
+```
+
+<hr>
+
+- ###### DEFINING METHODS FOR THE END POINTS
+
+```
+ROOT
+  |──backend
+  |    ├── config
+  |    │   └── db.js
+  |    ├── controllers
+  |    │   └── todo.js <--- we are here
+  |    ├── models
+  |    │   └── todo.js
+  |    ├── node_modules
+  |    ├── routes
+  |    │   └── todo.js
+  |    ├── .env
+  |    ├── server.js
+```
+
+- Import Todo model from models/todo
+- Define the following four methods
+  - getAllTodo
+  - postCreateTodo
+  - putUpdateTodo
+  - deleteTodo
+- Export all the methods
+
+```JS
+/// controllers/todo.js
+
+const Todo = require("../models/todo");
+
+exports.getAllTodo = (req, res) => {
+  Todo.find()
+    .then((todo) => res.json(todo))
+    .catch((err) =>
+      res.status(404).json({ message: "Todo not found", error: err.message })
+    );
+};
+
+exports.postCreateTodo = (req, res) => {
+  Todo.create(req.body).then((data) =>
+    res.json({ message: "Todo added successfully", data })
+  );
+};
+
+exports.putUpdateTodo = (req, res) => {
+  Todo.findByIdAndUpdate(req.params.id, req.body).then((data) =>
+    res
+      .json({ message: "updated successfully", data })
+      .catch((err) =>
+        res
+          .status(404)
+          .json({ message: "Failed to update todo", error: err.message })
+      )
+  );
+};
+
+exports.deleteTodo = (req, res) => {
+  Todo.findByIdAndRemove(req.params.id, req.body).then((data) =>
+    res
+      .json({ message: "todo deleted successfully", data })
+      .catch((err) =>
+        res.status(404).json({ message: "todo not found", error: err.message })
+      )
+  );
+};
+
+```
+
+- getAllTodo: The find() method will return all the todo in the collection. If the collection is empty then it will return a 404 error.
+
+- postCreateTodo: The create() method will create a todo and return a success message. Otherwise, it will return a 400 error.
+
+- putUpdateTodo: The findByIdAndUpdate() will require two parameters the id and data of the todo to be updated. The id parameter will be extracted from req.params.id.
+
+- deleteTodo: The findByIdAndRemove() method will require only one parameter that is the id of the todo.
+
+<hr>
+
+- ###### ADDING THE METHODS TO THE END POINTS
+
+```
+ROOT
+  |──backend
+  |    ├── config
+  |    │   └── db.js
+  |    ├── controllers
+  |    │   └── todo.js
+  |    ├── models
+  |    │   └── todo.js
+  |    ├── node_modules
+  |    ├── routes
+  |    │   └── todo.js <--- we are here
+  |    ├── .env
+  |    ├── server.js
+```
+
+- Import the methods for CRUD operations
+- Adding the methods to the end points
+
+```js
+/// routes/todo.js
+const express = require("express");
+const router = express.Router();
+
+const {
+  getAllTodo,
+  postCreateTodo,
+  putUpdateTodo,
+  deleteTodo
+} = require("../controllers/todo");
+
+/**
+ * @route GET api/todo
+ * @description get all todo
+ * @access public
+ */
+
+router.get("/", getAllTodo);
+
+/**
+ * @route POST api/todo
+ * @description add a new todo
+ * @access public
+ */
+router.post("/", postCreateTodo);
+
+/**
+ * @route PUT api/todo/:id
+ * @description update todo
+ * @access public
+ */
+router.put("/:id", putUpdateTodo);
+
+/**
+ * @route DELETE api/todo/:id
+ * @description delete todo
+ * @access public
+ */
+router.delete("/:id", deleteTodo);
+
+module.exports = router;
+```
+
+- ###### xiii. Adding the routes end points in the `server.js`
+
+```
+ROOT
+  |──backend
+  |    ├── config
+  |    │   └── db.js
+  |    ├── controllers
+  |    │   └── todo.js
+  |    ├── models
+  |    │   └── todo.js
+  |    ├── node_modules
+  |    ├── routes
+  |    │   └── todo.js
+  |    ├── .env
+  |    ├── server.js <--- we are here
+```
+
+The final part of completing the backend is to add the endpoints to the server.js file.
+
+- Import routes/todo.js
+- Add the routes endpoints to the middleware
+
+```js
+/// server.js
+require("dotenv").config();
+const express = require("express");
+const connectDB = require("./config/db");
+const cors = require("cors");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+/// routes
+const todo = require("./routes/todo"); /// added
+
+/// connect database
+connectDB(); /// added
+
+/// initialize middleware
+app.use(express.json({ extended: false }));
+app.get("/", (req, res) => res.send(`Server up and running `));
+
+/// use routes
+app.use("/api/todo", todo); /// added
+
+/// setting up port
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
 ```

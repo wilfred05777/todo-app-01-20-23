@@ -1,7 +1,13 @@
 /// routes/todo.js
 const express = require("express");
-// @ts-ignore
-const router = router.Router();
+const router = express.Router();
+
+const {
+  getAllTodo,
+  postCreateTodo,
+  putUpdateTodo,
+  deleteTodo
+} = require("../controllers/todo");
 
 /**
  * @route GET api/todo
@@ -9,27 +15,27 @@ const router = router.Router();
  * @access public
  */
 
-router.get("/");
+router.get("/", getAllTodo);
 
 /**
  * @route POST api/todo
  * @description add a new todo
  * @access public
  */
-router.post("/");
+router.post("/", postCreateTodo);
 
 /**
  * @route PUT api/todo/:id
  * @description update todo
  * @access public
  */
-router.put("/:id");
+router.put("/:id", putUpdateTodo);
 
 /**
  * @route DELETE api/todo/:id
  * @description delete todo
  * @access public
  */
-router.delete("/:id");
+router.delete("/:id", deleteTodo);
 
 module.exports = router;

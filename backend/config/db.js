@@ -5,6 +5,7 @@ mongoose.set("strictQuery", true);
 
 // dili jud mo gana pa ni
 const db = process.env.MONGO_URI;
+// const db = process.env.ATLAS_URI;
 
 const connectDB = async () => {
   try {
@@ -13,7 +14,7 @@ const connectDB = async () => {
     // await mongoose.connect(
     //   db,
     await mongoose.connect(
-      //// temprary fixed
+      //// temporary fixed
       `mongodb+srv://merntodoapp:merntodoapp@wilfredcluster.rsfdy.mongodb.net/merntodoapp23?retryWrites=true&w=majority`,
       {
         useNewUrlParser: true,

@@ -7,6 +7,7 @@ const db = process.env.MONGO_URI;
 
 const connectDB = async () => {
   try {
+    // `mongoose.connect()...`  bug not connected to mongodb need to figure this out
     const conn = await `{mongoose.connect(db, {
       useNewUrlParser: true,
       useUnifiedTopology: true

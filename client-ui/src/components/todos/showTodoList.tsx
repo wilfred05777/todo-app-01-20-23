@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 import { Link } from "react-router-dom"; // added
+import UpdateTodo from "./updateTodo"; /// added
 
 const TodoCard = ({
   data,
@@ -91,7 +92,11 @@ const showTodoList = () => {
         <h1>TODO</h1>
         <ul className="list-container">
           {todo.map((data) => (
-            <TodoCard data={data} handleDelete={handleDelete} />
+            <TodoCard
+              data={data}
+              handleDelete={handleDelete}
+              handleEdit={handleEdit}
+            />
           ))}
         </ul>
       </section>

@@ -63,7 +63,7 @@ const showTodoList = () => {
     setOpen(true);
   };
 
-  const handleUpdate = (e: any) => {
+  const handleUpdate = () => {
     // added
     console.log("Updated: ", update, !update);
     setUpdate(!update);

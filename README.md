@@ -173,25 +173,7 @@ app.listen(PORT, () => {
 });
 ```
 
-####
-
-<hr >
-
-#### Part 2: Creating Frontend
-
-###### Create React app
-
-- typscript and using [vite-react](https://tailwindcss.com/docs/guides/vite)
-
-- for this project I'm going to used [tailwindcss](https://tailwindcss.com/docs/guides/create-react-app)
-
-```
-npx create-react-app my-project
-cd my-project
-
-npm install -D tailwindcss
-npx tailwindcss init
-```
+<hr>
 
 ##### MongoDB configuration guide
 
@@ -602,4 +584,83 @@ app.use(
     credentials: true
   })
 );
+```
+
+<hr >
+
+#### Part 2: Creating Frontend
+
+###### Create React app
+
+```
+└──todo-app-01-20-23 folder
+    ├── server
+    └── client-ui <-- here
+```
+
+- typescript and using [vite-react](https://tailwindcss.com/docs/guides/vite)
+
+- for this project I'm going to used [tailwindcss](https://tailwindcss.com/docs/guides/create-react-app)
+
+```
+npx create-react-app my-project
+cd my-project
+
+npm install -D tailwindcss
+npx tailwindcss init
+```
+
+2. Installing required dependencies
+
+```
+cd client-ui
+npm i node-sass axios react-router-dom
+```
+
+3. Cleaning the src folder
+   - Delete the logo.svg
+   - Remove the imports from App.js
+   - Remove the following from App.js
+
+```
+├──client-ui
+    ├── node_modules
+    ├── public
+    ├── src <---------- we are here
+    │   ├── App.js
+    │   ├── App.scss
+    │   ├── App.test.js
+    │   ├── index.js
+    │   ├── reportWebVitals.js
+    │   └── setupTests.js
+    ├── .gitignore
+    ├── package-lock.json
+    ├── package.json
+    ├── README.md
+    └── yarn.lock
+```
+
+4.  Creating the components
+
+```
+├── node_modules
+├── public
+├── src
+│   ├── components
+|   |     ├──Pages
+|   |     ├──Todos
+│   │         ├── createTodo.jsx
+│   │         ├── showTodoList.jsx <-- we are here
+│   │         └── updateTodo.jsx
+│   ├── App.js
+│   ├── App.scss
+│   ├── App.test.js
+│   ├── index.js
+│   ├── reportWebVitals.js
+│   └── setupTests.js
+├── .gitignore
+├── package-lock.json
+├── package.json
+├── README.md
+└── yarn.lock
 ```

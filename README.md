@@ -530,3 +530,76 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 ```
+
+##### TESTING END POINTS USING POSTMAN
+
+- Creating a todo
+  - We will send a POST request to http://localhost:8000/api/todo
+
+```
+http://localhost:8000/api/todo
+```
+
+- Reading the todo
+  - We will send a GET request to http://localhost:8000/api/todo
+
+```
+http://localhost:8000/api/todo
+```
+
+- Updating the todo
+
+  - To update a todo we will send a PUT request to http://localhost:8000/api/todo/id
+
+  -The id has to be taken from the response message of the server.
+
+```
+http://localhost:8000/api/todo/id
+```
+
+- Deleting a todo
+
+  - To delete a todo we will send a DELETE request to http://localhost:8000/api/todo/id
+
+```
+http://localhost:8000/api/todo/id
+```
+
+<hr>
+
+#### 4. Adding cors
+
+- Added cors so that we can make the api calls from the frontend application like react.
+
+```
+ROOT
+  |──backend
+  |    ├── config
+  |    │   └── db.js
+  |    ├── controllers
+  |    │   └── todo.js
+  |    ├── models
+  |    │   └── todo.js
+  |    ├── node_modules
+  |    ├── routes
+  |    │   └── todo.js
+  |    ├── .env
+  |    ├── server.js <--- we are here
+```
+
+```js
+// server.js
+/// routes
+const todo = require("./routes/todo"); /// added
+
+/// connect database
+connectDB(); /// added
+
+/// cors
+app.use(
+  cors({
+    origin: true,
+    credentials: true
+  })
+);
+```

@@ -8,6 +8,8 @@ const express = require("express");
 const connectDB = require("./config/db");
 const cors = require("cors");
 
+// dotenv.config({ path: "./config.env" });
+
 const app = express();
 
 app.use(cors());
@@ -18,6 +20,14 @@ const todo = require("./routes/todo"); /// added
 
 /// connect database
 connectDB(); /// added
+
+/// cors
+app.use(
+  cors({
+    origin: true,
+    credentials: true
+  })
+);
 
 /// initialize middleware
 app.use(express.json({ extended: false }));
